@@ -1,6 +1,8 @@
 /* jshint node: true */
 'use strict';
 
+var out = require('out');
+var path = require('path');
 var sourcecat = require('sourcecat');
 var emu = require('emu');
 var pull = require('pull-stream');
@@ -34,14 +36,38 @@ var pull = require('pull-stream');
   and generate a single markdown file using a sensible ordering system
   implemented by [sourcecat](https://github.com/DamonOehlman/sourcecat).
 
-  Given the chance though, it will be even more helpful.
+  Given the chance though, it will be even more helpful using the processors
+  documented below:
 
-  ### Automatic Badge Insertion
 **/
 
 module.exports = function(args, callback) {
+  var pkginfo = {};
+  var docinfo = {};
+  var plugins = [];
+
+  try {
+    // attempt to include package info
+    pkginfo = require(path.resolve('package.json'));
+
+    // go a step futher and attempt to read doc info
+    docinfo = require(path.resolve('docs.json'));
+  }
+  catch (e) {
+  }
+
+  // load the plugins
+  plugins = Object.keys(docinfo).map(function(plugin) {
+    try {
+      return require('./plugin/' + plugin)(docinfo[plugin]);
+    }
+    catch (e) {
+      return null;
+    }
+  }).filter(Boolean);
+
   // sourcecat
-  sourcecat.generate(args[0], function(err, files) {
+  sourcecat.generate('**/*.js', function(err, files) {
     var content;
 
     if (err) {
@@ -54,14 +80,14 @@ module.exports = function(args, callback) {
     }).join('');
 
     // run the conversion pipeline
-    pull(
+    pull.apply(pull, [
       pull.values(emu.getComments(content).split('\n')),
-      pull.group(1),
-      require('./processors/badges')(),
+      pull.group(1)
+    ].concat(plugins).concat([
       pull.flatten(),
       pull.collect(function(err, lines) {
         callback(null, lines.join('\n'));
-      })
-    );
+      })      
+    ]));
   });
 };

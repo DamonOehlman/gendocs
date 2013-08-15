@@ -19,7 +19,7 @@ function getBadgeLines(callback) {
   return callback(null, [ 'badger', 'badger', 'badger', '']);
 }
 
-module.exports = pull.Through(function(read) {
+module.exports = pull.Through(function(read, config) {
   var addedBadges = false;
 
   return function(end, cb) {

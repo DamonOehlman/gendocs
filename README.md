@@ -30,9 +30,8 @@ By default all `gendocs` does is extract all special
 and generate a single markdown file using a sensible ordering system
 implemented by [sourcecat](https://github.com/DamonOehlman/sourcecat).
 
-Given the chance though, it will be even more helpful.
-
-### Automatic Badge Insertion
+Given the chance though, it will be even more helpful using the processors
+documented below:
 
 ### badges
 
