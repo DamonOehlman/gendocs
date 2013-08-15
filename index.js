@@ -15,13 +15,8 @@ var pull = require('pull-stream');
 
   ## Usage
 
-  First install:
-
-  ```
-  npm install -g gendocs
-  ```
-
-  Then run in a repository directory:
+  Install using the instructions shown in the lovely
+  [nodei.co](http://nodei.co) badge above then run in a repository directory:
 
   ```
   gendocs > README.md
