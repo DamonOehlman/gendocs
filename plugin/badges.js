@@ -6,15 +6,24 @@ var util = require('../util');
 var reNonH1 = /^\s*#{2,}\s+/;
 
 var generators = {
-  travis: function(config, pkgInfo) {
+  travis: function(enabled, pkgInfo) {
     var project = util.getRepoName(pkgInfo);
 
-    return config && project ? [
+    return enabled && project ? [
       '[',
       '![Build Status]',
       '(https://travis-ci.org/' + project + '.png?branch=master)',
       '](https://travis-ci.org/' + project + ')'
     ].join('') : '';
+  },
+
+  stability: function(stability) {
+    return [
+      '[',
+      '![' + stability + ']',
+      '(http://hughsk.github.io/stability-badges/dist/' + stability + '.svg)',
+      '](http://github.com/hughsk/stability-badges)'
+    ].join('');
   }
 };
 
