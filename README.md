@@ -47,9 +47,7 @@ helps you do that and it's enabled by default.
 Any time a line similar to the following is encountered:
 
 ```markdown
-```
-ERROR: could not find: examples/demo.js
-```
+\<\<\< examples/demo.js
 ```
 
 The file contents is included and an appropriate Github flavoured markdown
@@ -58,9 +56,9 @@ the file type.  So in the case of our previous example, something like the
 following might get created in our resulting markdown file:
 
 ```markdown
-```js
+\`\`\`js
 console.log('this is a tricky demo');
-```
+\`\`\`
 ```
 
 Sweet, eh?

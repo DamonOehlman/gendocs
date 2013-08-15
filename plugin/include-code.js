@@ -16,7 +16,7 @@ var reInclude = /^\s*\<{3}\s+(\S+)/;
   Any time a line similar to the following is encountered:
 
   ```markdown
-  <<< examples/demo.js
+  \<\<\< examples/demo.js
   ```
 
   The file contents is included and an appropriate Github flavoured markdown
@@ -25,9 +25,9 @@ var reInclude = /^\s*\<{3}\s+(\S+)/;
   following might get created in our resulting markdown file:
 
   ```markdown
-  ```js
+  \`\`\`js
   console.log('this is a tricky demo');
-  ```
+  \`\`\`
   ```
 
   Sweet, eh?
