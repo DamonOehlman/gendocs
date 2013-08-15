@@ -5,6 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var pull = require('pull-stream');
 var reInclude = /^\s*\<{3}\s+(\S+)/;
+var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 
 /**
   ### include-code
@@ -16,7 +17,7 @@ var reInclude = /^\s*\<{3}\s+(\S+)/;
   Any time a line similar to the following is encountered:
 
   ```markdown
-  \<\<\< examples/demo.js
+  \<<< examples/demo.js
   ```
 
   The file contents is included and an appropriate Github flavoured markdown
@@ -24,11 +25,11 @@ var reInclude = /^\s*\<{3}\s+(\S+)/;
   the file type.  So in the case of our previous example, something like the
   following might get created in our resulting markdown file:
 
-  ```markdown
-  \`\`\`js
+  <code>
+  ```js
   console.log('this is a tricky demo');
-  \`\`\`
   ```
+  </code>
 
   Sweet, eh?
 
@@ -47,7 +48,15 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       // run the test on the first line in the data only at this stage
       // TODO: process all the lines in case things have generated includes
       var match = data && reInclude.exec(data[0]);
+      var matchEscaped = data && (! match) && reEscapedInclude.exec(data[0]);
       var fileType;
+
+      // if this is an escaped include, remove the escape for the final
+      // output, which probably only caters for our self documenting this
+      // plugin
+      if (matchEscaped) {
+        data[0] = matchEscaped[1];
+      }
 
       // if this is not a match, pass the data on
       if (! match) {
