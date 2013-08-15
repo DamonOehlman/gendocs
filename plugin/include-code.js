@@ -7,6 +7,8 @@ var pull = require('pull-stream');
 var reInclude = /^\s*\<{3}\s+(\S+)/;
 var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 
+var reModuleRequire = /require\(([\"\'])[\.\/]+([\"\'])\)/;
+
 /**
   ### include-code
 
@@ -75,6 +77,13 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
           fileType = '';
           contents = 'ERROR: could not find: ' + match[1];
         }
+
+        // replace a require('..') or require('../..') call with 
+        // require('pkginfo.name') just to be helpful
+        contents = contents.replace(
+          reModuleRequire,
+          'require($1' + pkgInfo.name + '$2)'
+        );
 
         // send the data along
         cb(
