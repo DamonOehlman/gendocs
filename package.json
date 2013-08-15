@@ -1,0 +1,27 @@
+{
+  "name": "gendocs",
+  "version": "0.0.0",
+  "description": "Simple documentation generator using sourcecat and emu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/gendocs.git"
+  },
+  "keywords": [
+    "documentation",
+    "generator",
+    "markdown"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/gendocs/issues"
+  },
+  "dependencies": {
+    "emu": "0.0.2",
+    "sourcecat": "~0.1.3"
+  }
+}
