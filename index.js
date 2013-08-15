@@ -7,6 +7,10 @@ var sourcecat = require('sourcecat');
 var emu = require('emu');
 var pull = require('pull-stream');
 
+var defaultPlugins = [
+  'include-code'
+];
+
 /**
   # gendocs
 
@@ -52,7 +56,7 @@ module.exports = function(args, callback) {
   }
 
   // load the plugins
-  plugins = Object.keys(docInfo).map(function(plugin) {
+  plugins = Object.keys(docInfo).concat(defaultPlugins).map(function(plugin) {
     try {
       return require('./plugin/' + plugin)(docInfo[plugin], pkgInfo);
     }

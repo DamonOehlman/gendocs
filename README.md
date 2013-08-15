@@ -37,3 +37,38 @@ special markdown image link things.
 
 Will be inserted just before the first non top level (`#`) heading
 encountered in your documentation.
+
+### include-code
+
+Copy and paste.  Yeah, I'm not a fan.  If I'm going to write some example
+code, I'd rather write it once and include it into a file.  This plugin
+helps you do that and it's enabled by default.
+
+Any time a line similar to the following is encountered:
+
+```markdown
+```
+ERROR: could not find: examples/demo.js
+```
+```
+
+The file contents is included and an appropriate Github flavoured markdown
+code section is created with the syntax highlighting mode to set match
+the file type.  So in the case of our previous example, something like the
+following might get created in our resulting markdown file:
+
+```markdown
+```js
+console.log('this is a tricky demo');
+```
+```
+
+Sweet, eh?
+
+__NOTE:__ At this stage includes are processed relative to the root
+of the project.  So in the case where you are defining an include that
+exists within a subfolder of a project, remap the example code include
+back to the project root.  For example, you would probably use
+`examples/demo.js` rather than `../examples/demo.js`.  Just something to
+be aware of and an artifact of the way gendocs uses sourcecat at the present
+time.

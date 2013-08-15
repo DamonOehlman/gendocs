@@ -5,6 +5,17 @@ var pull = require('pull-stream');
 var util = require('../util');
 var reNonH1 = /^\s*#{2,}\s+/;
 
+/**
+  ### badges
+
+  Generate badges for your documentation without having to remember those
+  special markdown image link things.
+
+  Will be inserted just before the first non top level (`#`) heading
+  encountered in your documentation.
+
+**/
+
 var generators = {
   travis: function(enabled, pkgInfo) {
     var project = util.getRepoName(pkgInfo);
@@ -47,17 +58,6 @@ var generators = {
     ].join('') + '\n' : '';
   }
 };
-
-/**
-  ### badges
-
-  Generate badges for your documentation without having to remember those
-  special markdown image link things.
-
-  Will be inserted just before the first non top level (`#`) heading
-  encountered in your documentation.
-
-**/
 
 function getBadgeLines(config, pkgInfo, callback) {
   callback(null, Object.keys(config).map(function(badgeType) {
