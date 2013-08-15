@@ -1,6 +1,19 @@
+/* jshint node: true */
+'use strict';
+
 var pull = require('pull-stream');
-var reH1 = /^\s*#\s+/;
-var reH2 = /^\s*#{2}\s+/;
+var reNonH1 = /^\s*#{2,}\s+/;
+
+/**
+  ### badges
+
+  Generate badges for your documentation without having to remember those
+  special markdown image link things.
+
+  Will be inserted just before the first non top level (`#`) heading
+  encountered in your documentation.
+
+**/
 
 function getBadgeLines(callback) {
   return callback(null, [ 'badger', 'badger', 'badger', '']);
@@ -8,25 +21,16 @@ function getBadgeLines(callback) {
 
 module.exports = pull.Through(function(read) {
   var addedBadges = false;
-  var inHeader = false;
 
   return function(end, cb) {
     function next(end, data) {
-      var testLine;
-
       if (addedBadges || end) {
         return cb(end, data);
       }
 
       // get the test line (we are prepending content so it will be
       // the last line of the group if any mods have been made)
-      testLine = data[data.length - 1];
-
-      // check whether we are in the header section
-      inHeader = inHeader || reH1.test(testLine);
-
-      // if we are in the header and we hit a h2 then add the badges
-      if (inHeader && reH2.test(testLine)) {
+      if (reNonH1.test(data[data.length - 1])) {
         getBadgeLines(function(err, lines) {
           addedBadges = true;
           cb(null, (err ? [] : lines).concat(data));

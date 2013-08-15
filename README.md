@@ -3,6 +3,10 @@
 This is a simple documentation generator that generates an output markdown
 file designed to be saved as your `README.md` in your repository.
 
+badger
+badger
+badger
+
 ## Usage
 
 First install:
@@ -29,3 +33,11 @@ implemented by [sourcecat](https://github.com/DamonOehlman/sourcecat).
 Given the chance though, it will be even more helpful.
 
 ### Automatic Badge Insertion
+
+### badges
+
+Generate badges for your documentation without having to remember those
+special markdown image link things.
+
+Will be inserted just before the first non top level (`#`) heading
+encountered in your documentation.
