@@ -47,7 +47,7 @@ helps you do that and it's enabled by default.
 Any time a line similar to the following is encountered:
 
 ```markdown
-\<\<\< examples/demo.js
+<<< examples/demo.js
 ```
 
 The file contents is included and an appropriate Github flavoured markdown
@@ -55,11 +55,11 @@ code section is created with the syntax highlighting mode to set match
 the file type.  So in the case of our previous example, something like the
 following might get created in our resulting markdown file:
 
-```markdown
-\`\`\`js
+<code>
+```js
 console.log('this is a tricky demo');
-\`\`\`
 ```
+</code>
 
 Sweet, eh?
 
