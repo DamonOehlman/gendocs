@@ -24,6 +24,16 @@ var generators = {
       '(http://hughsk.github.io/stability-badges/dist/' + stability + '.svg)',
       '](http://github.com/hughsk/stability-badges)'
     ].join('');
+  },
+
+  nodeico: function(flags, pkgInfo) {
+    // TODO: do something sensible with the flags
+    return flags ? '\n' + [
+      '[',
+      '![NPM]',
+      '(https://nodei.co/npm/' + pkgInfo.name + '.png)',
+      '](https://nodei.co/npm/' + pkgInfo.name + '/)'
+    ].join('') + '\n' : '';
   }
 };
 
