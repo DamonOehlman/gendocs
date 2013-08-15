@@ -6,6 +6,7 @@
   "bin": {
     "gendocs": "bin/gendocs"
   },
+  "preferGlobal": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gendocs": "./bin/gendocs > README.md"
