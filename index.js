@@ -42,24 +42,24 @@ var pull = require('pull-stream');
 **/
 
 module.exports = function(args, callback) {
-  var pkginfo = {};
-  var docinfo = {};
+  var pkgInfo = {};
+  var docInfo = {};
   var plugins = [];
 
   try {
     // attempt to include package info
-    pkginfo = require(path.resolve('package.json'));
+    pkgInfo = require(path.resolve('package.json'));
 
     // go a step futher and attempt to read doc info
-    docinfo = require(path.resolve('docs.json'));
+    docInfo = require(path.resolve('docs.json'));
   }
   catch (e) {
   }
 
   // load the plugins
-  plugins = Object.keys(docinfo).map(function(plugin) {
+  plugins = Object.keys(docInfo).map(function(plugin) {
     try {
-      return require('./plugin/' + plugin)(docinfo[plugin]);
+      return require('./plugin/' + plugin)(docInfo[plugin], pkgInfo);
     }
     catch (e) {
       return null;

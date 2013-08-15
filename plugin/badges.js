@@ -2,7 +2,21 @@
 'use strict';
 
 var pull = require('pull-stream');
+var util = require('../util');
 var reNonH1 = /^\s*#{2,}\s+/;
+
+var generators = {
+  travis: function(config, pkgInfo) {
+    var project = util.getRepoName(pkgInfo);
+
+    return config && project ? [
+      '[',
+      '![Build Status]',
+      '(https://travis-ci.org/' + project + '.png?branch=master)',
+      '](https://travis-ci.org/' + project + ')'
+    ].join('') : '';
+  }
+};
 
 /**
   ### badges
@@ -15,11 +29,19 @@ var reNonH1 = /^\s*#{2,}\s+/;
 
 **/
 
-function getBadgeLines(callback) {
-  return callback(null, [ 'badger', 'badger', 'badger', '']);
+function getBadgeLines(config, pkgInfo, callback) {
+  callback(null, Object.keys(config).map(function(badgeType) {
+    var generator = generators[badgeType];
+
+    if (typeof generator == 'function') {
+      return generator(config[badgeType], pkgInfo);
+    }
+
+    return '';
+  }).concat(''));
 }
 
-module.exports = pull.Through(function(read, config) {
+module.exports = pull.Through(function(read, config, pkgInfo) {
   var addedBadges = false;
 
   return function(end, cb) {
@@ -31,7 +53,7 @@ module.exports = pull.Through(function(read, config) {
       // get the test line (we are prepending content so it will be
       // the last line of the group if any mods have been made)
       if (reNonH1.test(data[data.length - 1])) {
-        getBadgeLines(function(err, lines) {
+        getBadgeLines(config, pkgInfo, function(err, lines) {
           addedBadges = true;
           cb(null, (err ? [] : lines).concat(data));
         });

@@ -3,9 +3,7 @@
 This is a simple documentation generator that generates an output markdown
 file designed to be saved as your `README.md` in your repository.
 
-badger
-badger
-badger
+[![Build Status](https://travis-ci.org/DamonOehlman/gendocs.png?branch=master)](https://travis-ci.org/DamonOehlman/gendocs)
 
 ## Usage
 
