@@ -7,7 +7,8 @@
     "gendocs": "bin/gendocs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gendocs": "./bin/gendocs > README.md"
   },
   "repository": {
     "type": "git",

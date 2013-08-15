@@ -39,5 +39,20 @@ var emu = require('emu');
 **/
 
 module.exports = function(args, callback) {
+  // sourcecat
+  sourcecat.generate(args[0], function(err, files) {
+    var content;
 
+    if (err) {
+      return callback(err);
+    }
+
+    // concat
+    content = files.map(function(file) {
+      return file.content.toString('utf8');
+    }).join('');
+
+    // now get emu to do it's thing
+    callback(null, emu.getComments(content));
+  });
 };
