@@ -17,6 +17,17 @@ var generators = {
     ].join('') : '';
   },
 
+  testling: function(enabled, pkgInfo) {
+    var project = util.getRepoName(pkgInfo);
+
+    return enabled && project ? '\n' + [
+      '[',
+      '![browser support]',
+      '(https://ci.testling.com/' + project + '.png)',
+      '](https://ci.testling.com/' + project + ')'
+    ].join('') + '\n' : '';
+  },
+
   stability: function(stability) {
     return [
       '[',
