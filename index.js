@@ -3,6 +3,7 @@
 
 var sourcecat = require('sourcecat');
 var emu = require('emu');
+var pull = require('pull-stream');
 
 /**
   # gendocs
@@ -52,7 +53,15 @@ module.exports = function(args, callback) {
       return file.content.toString('utf8');
     }).join('');
 
-    // now get emu to do it's thing
-    callback(null, emu.getComments(content));
+    // run the conversion pipeline
+    pull(
+      pull.values(emu.getComments(content).split('\n')),
+      pull.group(1),
+      require('./processors/badges')(),
+      pull.flatten(),
+      pull.collect(function(err, lines) {
+        callback(null, lines.join('\n'));
+      })
+    );
   });
 };

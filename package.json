@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "emu": "0.0.2",
-    "sourcecat": "~0.1.3"
+    "sourcecat": "~0.1.3",
+    "pull-stream": "~2.20.1"
   }
 }
