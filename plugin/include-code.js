@@ -25,13 +25,14 @@ var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
   the file type.  So in the case of our previous example, something like the
   following might get created in our resulting markdown file:
 
-  <code>
-  ```js
-  console.log('this is a tricky demo');
   ```
-  </code>
+  !!!js
+  console.log('this is a tricky demo');
+  !!!
+  ```
 
-  Sweet, eh?
+  You have to imagine that the exclamation marks are backticks in the output
+  above, but you get the idea.
 
   __NOTE:__ At this stage includes are processed relative to the root
   of the project.  So in the case where you are defining an include that
