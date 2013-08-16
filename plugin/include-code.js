@@ -1,6 +1,7 @@
 /* jshint node: true */
 'use strict';
 
+var getit = require('getit');
 var fs = require('fs');
 var path = require('path');
 var pull = require('pull-stream');
@@ -70,7 +71,7 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       fileType = path.extname(match[1]).slice(1);
 
       // read the contents of the specified file
-      fs.readFile(path.resolve(match[1]), 'utf8', function(err, contents) {
+      getit(match[1], function(err, contents) {
         // if we encountered an error, include an error message in the
         // output
         if (err) {
