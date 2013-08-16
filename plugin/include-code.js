@@ -5,7 +5,7 @@ var getit = require('getit');
 var fs = require('fs');
 var path = require('path');
 var pull = require('pull-stream');
-var reInclude = /^\s*\<{3}\s+(\S+)/;
+var reInclude = /^\s*\<{3}(\w*?)\s+(\S+)/;
 var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 
 var reModuleRequire = /require\(([\"\'])[\.\/]+([\"\'])\)/;
@@ -68,10 +68,10 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       }
 
       // get the filetype
-      fileType = path.extname(match[1]).slice(1);
+      fileType = match[1] || path.extname(match[1]).slice(1);
 
       // read the contents of the specified file
-      getit(match[1], function(err, contents) {
+      getit(match[2], function(err, contents) {
         // if we encountered an error, include an error message in the
         // output
         if (err) {
