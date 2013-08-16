@@ -14,6 +14,17 @@ var reNonH1 = /^\s*#{2,}\s+/;
   Will be inserted just before the first non top level (`#`) heading
   encountered in your documentation.
 
+  #### Example Docs Configuration for Simple Badges
+
+  <<<json gist://6249137
+
+  If you want to bootstrap a new `docs.json` file in your project directory
+  then try the following:
+
+  ```
+  curl https://raw.github.com/gist/6249137 > docs.json
+  ```
+
 **/
 
 var generators = {
