@@ -60,7 +60,7 @@ var reModuleRequire = /require\(([\"\'])[\.\/]+([\"\'])\)/;
   ```
   \<<<json gist://6249137
   ```
-  
+
 **/
 
 module.exports =  pull.Through(function(read, config, pkgInfo) {
@@ -85,7 +85,7 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       }
 
       // get the filetype
-      fileType = match[1] || path.extname(match[1]).slice(1);
+      fileType = match[1] || path.extname(match[2]).slice(1);
 
       // read the contents of the specified file
       getit(match[2], function(err, contents) {
