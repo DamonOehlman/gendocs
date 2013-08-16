@@ -84,10 +84,26 @@ console.log('this is a tricky demo');
 You have to imagine that the exclamation marks are backticks in the output
 above, but you get the idea.
 
-__NOTE:__ At this stage includes are processed relative to the root
-of the project.  So in the case where you are defining an include that
-exists within a subfolder of a project, remap the example code include
-back to the project root.  For example, you would probably use
-`examples/demo.js` rather than `../examples/demo.js`.  Just something to
-be aware of and an artifact of the way gendocs uses sourcecat at the present
-time.
+#### Regarding Relative File Paths
+
+At this stage, **all** include paths are relative to the project root rather
+than the source file location.  So if you had were including an example from
+a subfolder in your project, rather than referencing `../examples/demo.js`
+simply reference `examples/demo.js` and everything will be sweet.
+
+#### Including Example code from Github Gists
+
+If you have example code in a [gist](https://gist.github.com) then you
+can include that into your readme also quite easily.  For example:
+
+```
+<<< gist://6249137
+```
+
+However, as gendocs is unable to determine what the file type is from a
+raw http request (and github serves all raw content as text/plain IIRC) you
+need to tell gendocs the typeof of syntax highlighting you want:
+
+```
+<<<json gist://6249137
+```
