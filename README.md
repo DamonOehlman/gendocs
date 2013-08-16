@@ -38,6 +38,26 @@ special markdown image link things.
 Will be inserted just before the first non top level (`#`) heading
 encountered in your documentation.
 
+#### Example Docs Configuration for Simple Badges
+
+```json
+{
+  "badges": {
+    "nodeico": true,
+    "travis": true,
+    "stability": "experimental",
+    "testling": true
+  }
+}
+```
+
+If you want to bootstrap a new `docs.json` file in your project directory
+then try the following:
+
+```
+curl https://raw.github.com/gist/6249137 > docs.json
+```
+
 ### include-code
 
 Copy and paste.  Yeah, I'm not a fan.  If I'm going to write some example
