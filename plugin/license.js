@@ -33,7 +33,7 @@ var licensePath = path.resolve(__dirname, '..', 'licenses');
   ```json
   {
     "license": {
-      "year": "2008 - 2013"
+      "year": "2008 - 2013",
       "holder": "Foobar Corp <development@foobar.com>"
     }
   }

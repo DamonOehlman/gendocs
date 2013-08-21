@@ -131,7 +131,7 @@ the author in the package.json file, then use the following in your
 ```json
 {
   "license": {
-    "year": "2008 - 2013"
+    "year": "2008 - 2013",
     "holder": "Foobar Corp <development@foobar.com>"
   }
 }
