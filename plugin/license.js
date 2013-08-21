@@ -11,7 +11,26 @@ var licensePath = path.resolve(__dirname, '..', 'licenses');
 /**
   ### license
 
-  Insert the license at the tail end of your documentation.
+  Insert the license at the tail end of your documentation. Uses the current
+  year and package information from the `package.json` file to generate an 
+  appropriate license for your project.  The license(s) that will be appended
+  to your README are based on the licenses specified in the `package.json`
+  file also.
+
+  To enable, you will need to inform `docs.json` that you want this
+  functionality:
+
+  ```json
+  {
+    "license": true
+  }
+  ```
+
+  Currently implemented license templates can be found at the following
+  location:
+
+  <https://github.com/DamonOehlman/gendocs/tree/master/licenses>
+
 
 **/
 
