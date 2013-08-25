@@ -32,13 +32,17 @@ var defaultPlugins = [
   implemented by [sourcecat](https://github.com/DamonOehlman/sourcecat).
 
   Emu looks for standard JS block comments, but with two asterisks instead
-  of one.  For example:
+  of one.  While emu is unfussy about the content of those comments, gendocs
+  is expecting mardown formatted text to be present.
+
+  For example:
 
   <<< examples/sample-commented.js
 
-  Additionally, it's important to note that at this stage, emu is a little
-  fussy about the indentation of the documentation within the comment block.
-  So for my docs I intent one level just to be sure.
+  __NOTE:__ As emu is a little fussy about the indentation of the
+  documentation within the comment block, it's wise to make sure you indent
+  your documentation one level in from the opening comment. If you haven't
+  you will notice this with code samples losing indentation.
 
   ## Customizing Output
 
