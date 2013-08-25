@@ -26,17 +26,26 @@ var defaultPlugins = [
   gendocs > README.md
   ```
 
-  Done.
-
-  ## Customizing Output
-
-  By default all `gendocs` does is extract all special
+  Done. By default all `gendocs` does is extract all special
   [emu](https://github.com/puffnfresh/emu.js) comments from your source files
   and generate a single markdown file using a sensible ordering system
   implemented by [sourcecat](https://github.com/DamonOehlman/sourcecat).
 
-  Given the chance though, it will be even more helpful using the processors
-  documented below:
+  Emu looks for standard JS block comments, but with two asterisks instead
+  of one.  For example:
+
+  <<< examples/sample-commented.js
+
+  Additionally, it's important to note that at this stage, emu is a little
+  fussy about the indentation of the documentation within the comment block.
+  So for my docs I intent one level just to be sure.
+
+  ## Customizing Output
+
+  Gendocs uses a simple plugin system to allow you to customize the
+  documentation generated. Most plugins are manually enabled through
+  configuration within a `docs.json` file, though some are enabled
+  automatically.
 
 **/
 
