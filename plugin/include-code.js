@@ -8,7 +8,7 @@ var pull = require('pull-stream');
 var reInclude = /^\s*\<{3}(\w*?)\s+(\S+)/;
 var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 
-var reModuleRequire = /require\(([\"\'])[\.\/]+([\"\'])\)/;
+var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
 
 /**
   ### include-code
@@ -89,6 +89,9 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
 
       // read the contents of the specified file
       getit(match[2], function(err, contents) {
+        var requireMatch;
+        var requireText;
+
         // if we encountered an error, include an error message in the
         // output
         if (err) {
@@ -96,12 +99,29 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
           contents = 'ERROR: could not find: ' + match[1];
         }
 
+        // look for relative requires
+        requireMatch = reModuleRequire.exec(contents);
+        while (requireMatch) {
+          // create the new require text
+          requireText = 'require(' + requireMatch[1] + pkgInfo.name;
+          if (requireMatch[3]) {
+            requireText += '/' + requireMatch[3];
+          }
+
+          // replace the require instance
+          contents = contents.replace(
+            requireMatch[0], requireText + requireMatch[4] + ')');
+
+          // check for more matches
+          requireMatch = reModuleRequire.exec(contents);
+        }
+
         // replace a require('..') or require('../..') call with 
         // require('pkginfo.name') just to be helpful
-        contents = contents.replace(
-          reModuleRequire,
-          'require($1' + pkgInfo.name + '$2)'
-        );
+        // contents = contents.replace(
+        //   reModuleRequire,
+        //   'require($1' + pkgInfo.name + '$3)'
+        // );
 
         // send the data along
         cb(
