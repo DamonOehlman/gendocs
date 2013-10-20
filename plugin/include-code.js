@@ -39,13 +39,9 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
 
   __NOTE:__ Should you wish to highlight a syntax that is different to it's
   extension (or it's extension is not recognised), simply specify the
-  highlighter syntax directly after the the `<<<` directory.  For example,
+  highlighter syntax directly after the the `<<<` directive.  For example,
   to include a stylus file using the css highlighter, you could do something
-  similar to the following (once again replace !!! with <<<):
-
-  ```
-  !!!css examples/main.styl
-  ```
+  like: `<<<css examples.styl`
 
   #### Regarding Relative File Paths
 
