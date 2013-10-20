@@ -37,6 +37,16 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
   You have to imagine that the exclamation marks are backticks in the output
   above, but you get the idea.
 
+  __NOTE:__ Should you wish to highlight a syntax that is different to it's
+  extension (or it's extension is not recognised), simply specify the
+  highlighter syntax directly after the the `<<<` directory.  For example,
+  to include a stylus file using the css highlighter, you could do something
+  similar to the following (once again replace !!! with <<<):
+
+  ```
+  !!!css examples/main.styl
+  ```
+
   #### Regarding Relative File Paths
 
   At this stage, **all** include paths are relative to the project root rather

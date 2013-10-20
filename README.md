@@ -75,16 +75,7 @@ encountered in your documentation.
 #### Example Docs Configuration for Simple Badges
 
 ```json
-{
-  "badges": {
-    "nodeico": true,
-    "travis": true,
-    "stability": "experimental",
-    "testling": true
-  },
-
-  "license": {}
-}
+<html><body>You are being <a href="https://github.com/gist/6249137">redirected</a>.</body></html>
 ```
 
 If you want to bootstrap a new `docs.json` file in your project directory
@@ -119,6 +110,16 @@ console.log('this is a tricky demo');
 
 You have to imagine that the exclamation marks are backticks in the output
 above, but you get the idea.
+
+__NOTE:__ Should you wish to highlight a syntax that is different to it's
+extension (or it's extension is not recognised), simply specify the
+highlighter syntax directly after the the `<<<` directory.  For example,
+to include a stylus file using the css highlighter, you could do something
+similar to the following (once again replace !!! with <<<):
+
+```
+!!!css examples/main.styl
+```
 
 #### Regarding Relative File Paths
 
