@@ -34,8 +34,19 @@ var generators = {
     return enabled && project ? [
       '[',
       '![Build Status]',
-      '(https://travis-ci.org/' + project + '.png?branch=master)',
-      '](https://travis-ci.org/' + project + ')'
+      '(https://travis-ci.org/' + project.path + '.png?branch=master)',
+      '](https://travis-ci.org/' + project.path + ')'
+    ].join('') : '';
+  },
+
+  drone: function(enabled, pkgInfo) {
+    var p = util.getRepoName(pkgInfo);
+
+    return enabled && p ? [
+      '[',
+      '![Build Status]',
+      '(https://drone.io/' + p.host + '/' + p.path + '/status.png)',
+      '](https://drone.io/' + p.host + '/' + p.path + '/latest)'
     ].join('') : '';
   },
 
@@ -45,8 +56,8 @@ var generators = {
     return enabled && project ? '\n' + [
       '[',
       '![browser support]',
-      '(https://ci.testling.com/' + project + '.png)',
-      '](https://ci.testling.com/' + project + ')'
+      '(https://ci.testling.com/' + project.path + '.png)',
+      '](https://ci.testling.com/' + project.path + ')'
     ].join('') + '\n' : '';
   },
 
