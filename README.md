@@ -74,8 +74,8 @@ encountered in your documentation.
 
 #### Example Docs Configuration for Simple Badges
 
-```json
-<html><body>You are being <a href="https://github.com/gist/6249137">redirected</a>.</body></html>
+```
+ERROR: could not find: json
 ```
 
 If you want to bootstrap a new `docs.json` file in your project directory
@@ -130,7 +130,7 @@ If you have example code in a [gist](https://gist.github.com) then you
 can include that into your readme also quite easily.  For example:
 
 ```
-<<< gist://6249137
+<<< gist://DamonOehlman/6249137
 ```
 
 However, as gendocs is unable to determine what the file type is from a
@@ -138,7 +138,7 @@ raw http request (and github serves all raw content as text/plain IIRC) you
 need to tell gendocs the typeof of syntax highlighting you want:
 
 ```
-<<<json gist://6249137
+<<<json gist://DamonOehlman/6249137
 ```
 
 ### license

@@ -56,7 +56,7 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
   can include that into your readme also quite easily.  For example:
 
   ```
-  \<<< gist://6249137
+  \<<< gist://DamonOehlman/6249137
   ```
 
   However, as gendocs is unable to determine what the file type is from a
@@ -64,7 +64,7 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
   need to tell gendocs the typeof of syntax highlighting you want:
 
   ```
-  \<<<json gist://6249137
+  \<<<json gist://DamonOehlman/6249137
   ```
 
 **/
