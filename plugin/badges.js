@@ -16,13 +16,13 @@ var reNonH1 = /^\s*#{2,}\s+/;
 
   #### Example Docs Configuration for Simple Badges
 
-  <<<json gist://6249137
+  <<<json gist://DamonOehlman:6249137
 
   If you want to bootstrap a new `docs.json` file in your project directory
   then try the following:
 
   ```
-  curl https://raw.github.com/gist/6249137 > docs.json
+  curl https://gist.github.com/DamonOehlman/6249137/raw > docs.json
   ```
 
 **/

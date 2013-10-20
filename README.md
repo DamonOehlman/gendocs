@@ -74,15 +74,24 @@ encountered in your documentation.
 
 #### Example Docs Configuration for Simple Badges
 
-```
-ERROR: could not find: json
+```json
+{
+  "badges": {
+    "nodeico": true,
+    "travis": true,
+    "stability": "experimental",
+    "testling": true
+  },
+
+  "license": {}
+}
 ```
 
 If you want to bootstrap a new `docs.json` file in your project directory
 then try the following:
 
 ```
-curl https://raw.github.com/gist/6249137 > docs.json
+curl https://gist.github.com/DamonOehlman/6249137/raw > docs.json
 ```
 
 ### include-code
@@ -115,7 +124,11 @@ __NOTE:__ Should you wish to highlight a syntax that is different to it's
 extension (or it's extension is not recognised), simply specify the
 highlighter syntax directly after the the `<<<` directive.  For example,
 to include a stylus file using the css highlighter, you could do something
-like: `<<<css examples.styl`
+like:
+
+```
+<<<css examples.styl
+```
 
 #### Regarding Relative File Paths
 
@@ -130,7 +143,7 @@ If you have example code in a [gist](https://gist.github.com) then you
 can include that into your readme also quite easily.  For example:
 
 ```
-<<< gist://DamonOehlman/6249137
+<<< gist://DamonOehlman:6249137
 ```
 
 However, as gendocs is unable to determine what the file type is from a
@@ -138,7 +151,7 @@ raw http request (and github serves all raw content as text/plain IIRC) you
 need to tell gendocs the typeof of syntax highlighting you want:
 
 ```
-<<<json gist://DamonOehlman/6249137
+<<<json gist://DamonOehlman:6249137
 ```
 
 ### license

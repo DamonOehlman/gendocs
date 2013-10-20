@@ -41,7 +41,11 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
   extension (or it's extension is not recognised), simply specify the
   highlighter syntax directly after the the `<<<` directive.  For example,
   to include a stylus file using the css highlighter, you could do something
-  like: `<<<css examples.styl`
+  like:
+
+  ```
+  \<<<css examples.styl
+  ```
 
   #### Regarding Relative File Paths
 
@@ -56,7 +60,7 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
   can include that into your readme also quite easily.  For example:
 
   ```
-  \<<< gist://DamonOehlman/6249137
+  \<<< gist://DamonOehlman:6249137
   ```
 
   However, as gendocs is unable to determine what the file type is from a
@@ -64,7 +68,7 @@ var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
   need to tell gendocs the typeof of syntax highlighting you want:
 
   ```
-  \<<<json gist://DamonOehlman/6249137
+  \<<<json gist://DamonOehlman:6249137
   ```
 
 **/
