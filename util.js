@@ -1,6 +1,6 @@
 var regexes = [
-  /^.*github\.com\/(.*)\.git.*$/, // github
-  /^.*bitbucket\.org\/(.*)\.git.*$/ // bitbucket
+  /^.*(github\.com)\/(.*)\.git.*$/, // github
+  /^.*(bitbucket\.org)\/(.*)\.git.*$/ // bitbucket
 ];
 
 exports.getRepoName = function(pkgInfo) {
@@ -9,5 +9,8 @@ exports.getRepoName = function(pkgInfo) {
     return memo || regex.exec(url);
   }, false);
 
-  return match ? match[1].split('/').splice(0, 2).join('/') : '';
+  return match && {
+    host: match[1],
+    path: match[2].split('/').splice(0, 2).join('/')
+  };
 };
