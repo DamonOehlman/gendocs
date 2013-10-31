@@ -8,7 +8,7 @@ var pull = require('pull-stream');
 var reInclude = /^\s*\<{3}(\w*?)\s+(\S+)/;
 var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 
-var reModuleRequire = /require\(([\"\'])([\.\/]+)([\w\/]*)([\"\'])\)/;
+var reModuleRequire = /require\(([\"\'])(\.\.[\.\/]*)([\w\/]*)([\"\'])\)/;
 
 /**
   ### include-code
