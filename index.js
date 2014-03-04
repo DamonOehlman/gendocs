@@ -53,10 +53,11 @@ var defaultPlugins = [
 
 **/
 
-module.exports = function(args, callback) {
+module.exports = function(opts, callback) {
   var pkgInfo = {};
   var docInfo = {};
   var plugins = [];
+  var excluded = (opts || {}).exclude || [];
 
   try {
     // attempt to include package info
@@ -79,12 +80,23 @@ module.exports = function(args, callback) {
   }).filter(Boolean);
 
   // sourcecat
-  sourcecat.generate('**/*.js', function(err, files) {
+  sourcecat.load('**/*.js', function(err, files) {
     var content;
 
     if (err) {
       return callback(err);
     }
+
+    // remove excluded files
+    files = files.filter(function(file) {
+      var isExcluded = excluded.indexOf(file.filename) >= 0;
+
+      if (isExcluded) {
+        out('!{grey}gendocs is excluding {0}', file.filename);
+      }
+
+      return !isExcluded;
+    });
 
     // concat
     content = files.map(function(file) {
@@ -99,7 +111,7 @@ module.exports = function(args, callback) {
       pull.flatten(),
       pull.collect(function(err, lines) {
         callback(null, lines.join('\n'));
-      })      
+      })
     ]));
   });
 };
