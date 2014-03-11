@@ -4,6 +4,14 @@
 var pull = require('pull-stream');
 var util = require('../util');
 var reNonH1 = /^\s*#{2,}\s+/;
+var stabilityColors = {
+  deprecated: 'aa8899',
+  experimental: 'red',
+  unstable: 'yellowgreen',
+  stable: 'green',
+  frozen: 'blue',
+  locked: '00bbff'
+};
 
 /**
   ### badges
@@ -34,7 +42,7 @@ var generators = {
     return enabled && project ? [
       '[',
       '![Build Status]',
-      '(https://travis-ci.org/' + project.path + '.png?branch=master)',
+      '(https://img.shields.io/travis/' + project.path + '.svg?branch=master)',
       '](https://travis-ci.org/' + project.path + ')'
     ].join('') : '';
   },
@@ -62,11 +70,11 @@ var generators = {
   },
 
   stability: function(stability) {
+    var color = stabilityColors[stability] || 'lightgrey';
+
     return [
-      '[',
       '![' + stability + ']',
-      '(http://hughsk.github.io/stability-badges/dist/' + stability + '.svg)',
-      '](http://github.com/hughsk/stability-badges)'
+      '(https://img.shields.io/badge/stability-' + stability + '-' + color + '.svg)'
     ].join('');
   },
 
