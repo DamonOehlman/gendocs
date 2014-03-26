@@ -86,6 +86,22 @@ var generators = {
       '(https://nodei.co/npm/' + pkgInfo.name + '.png)',
       '](https://nodei.co/npm/' + pkgInfo.name + '/)'
     ].join('') + '\n' : '';
+  },
+
+  gitter: function(room, pkgInfo) {
+    // room could be true or an empty object if we have
+    // read this directly from json
+    if (typeof room != 'string') {
+      room = util.getRepoName(pkgInfo).path;
+    }
+
+    return '\n' + [
+      '[',
+      '![Gitter chat]',
+      '(https://badges.gitter.im/' + room + '.png)',
+      '](https://gitter.im/' + room + ')'
+    ].join('') + '\n';
+    
   }
 };
 
