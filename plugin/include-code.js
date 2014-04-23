@@ -101,11 +101,13 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       getit(match[2], function(err, contents) {
         var requireMatch;
         var requireText;
+        var isMarkdown = ['md', 'mdown', 'MD', 'MDOWN'].indexOf(fileType) >= 0;
+        var blockTop = (isMarkdown || err) ? [] : ['```' + fileType];
+        var blockTail = (isMarkdown || err) ? [] : ['```'];
 
         // if we encountered an error, include an error message in the
         // output
         if (err) {
-          fileType = '';
           contents = 'ERROR: could not find: ' + match[1];
         }
 
@@ -126,7 +128,7 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
           requireMatch = reModuleRequire.exec(contents);
         }
 
-        // replace a require('..') or require('../..') call with 
+        // replace a require('..') or require('../..') call with
         // require('pkginfo.name') just to be helpful
         // contents = contents.replace(
         //   reModuleRequire,
@@ -136,10 +138,9 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
         // send the data along
         cb(
           end,
-          ['```' + fileType]
-            .concat(contents.split('\n'))
+          blockTop.concat(contents.split('\n'))
             .concat(data.slice(1))
-            .concat('```')
+            .concat(blockTail)
         );
       });
     }
