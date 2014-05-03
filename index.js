@@ -59,6 +59,19 @@ module.exports = function(opts, callback) {
   var plugins = [];
   var excluded = (opts || {}).exclude || [];
 
+  function generate(content) {
+    // run the conversion pipeline
+    pull.apply(pull, [
+      pull.values(content.split('\n')),
+      pull.group(1)
+    ].concat(plugins).concat([
+      pull.flatten(),
+      pull.collect(function(err, lines) {
+        callback(null, lines.join('\n'));
+      })
+    ]));
+  }
+
   try {
     // attempt to include package info
     pkgInfo = require(path.resolve('package.json'));
@@ -78,6 +91,11 @@ module.exports = function(opts, callback) {
       return null;
     }
   }).filter(Boolean);
+
+  // if we have been provided source content, then use that instead
+  if (opts && typeof opts.input == 'string') {
+    generate(opts.input);
+  }
 
   // sourcecat
   sourcecat.load('**/*.js', function(err, files) {
@@ -103,15 +121,6 @@ module.exports = function(opts, callback) {
       return file.content.toString('utf8');
     }).join('');
 
-    // run the conversion pipeline
-    pull.apply(pull, [
-      pull.values(emu.getComments(content).split('\n')),
-      pull.group(1)
-    ].concat(plugins).concat([
-      pull.flatten(),
-      pull.collect(function(err, lines) {
-        callback(null, lines.join('\n'));
-      })
-    ]));
+    generate(emu.getComments(content));
   });
 };
