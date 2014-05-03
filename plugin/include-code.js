@@ -5,9 +5,12 @@ var getit = require('getit');
 var fs = require('fs');
 var path = require('path');
 var pull = require('pull-stream');
-var reInclude = /^\s*\<{3}(\w*?)\s+(\S+)/;
-var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 
+var reIncludes = [
+  /^\s*\<{3}(\w*?)(\s?\[[^\]]+\])?\s+(\S+)/,
+  /^\s*\<{2}()(\[[^\]]+\])?\(([^\)]+)\)/
+];
+var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 var reModuleRequire = /require\(([\"\'])(\.\.[\.\/]*)([\w\/]*)([\"\'])\)/;
 
 /**
@@ -78,7 +81,9 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
     function next(end, data) {
       // run the test on the first line in the data only at this stage
       // TODO: process all the lines in case things have generated includes
-      var match = data && reInclude.exec(data[0]);
+      var match = data && reIncludes.map(function(regex) {
+        return regex.exec(data[0]);
+      }).filter(Boolean)[0];
       var matchEscaped = data && (! match) && reEscapedInclude.exec(data[0]);
       var fileType;
 
@@ -95,10 +100,10 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       }
 
       // get the filetype
-      fileType = match[1] || path.extname(match[2]).slice(1);
+      fileType = match[1] || path.extname(match[3]).slice(1);
 
       // read the contents of the specified file
-      getit(match[2], function(err, contents) {
+      getit(match[3], function(err, contents) {
         var requireMatch;
         var requireText;
         var isMarkdown = ['md', 'mdown', 'MD', 'MDOWN'].indexOf(fileType) >= 0;
