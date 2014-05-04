@@ -25,8 +25,8 @@ function generate(input) {
   });
 }
 
-fs.exists(targetFile, function(exists) {
-  if (! exists) {
+fs.stat(targetFile, function(err, stats) {
+  if (err || (! stats.isFile())) {
     return generate();
   }
 
