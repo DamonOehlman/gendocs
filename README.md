@@ -157,6 +157,13 @@ need to tell gendocs the typeof of syntax highlighting you want:
 <<<json gist://DamonOehlman:6249137
 ```
 
+#### Alternative Include Format (Leanpub Compatible)
+
+In addition to the format outlined above, I have been experimenting with
+adding support for the [leanpub](https://leanpub.com/) markdown includes:
+
+https://github.com/peterarmstrong/leanpub_sample_markdown_book/blob/master/Leanpub%20Book%20Format.md
+
 ### license
 
 Insert the license at the tail end of your documentation. Uses the current
