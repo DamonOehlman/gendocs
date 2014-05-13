@@ -72,12 +72,12 @@ var generators = {
   david: function(enabled, pkgInfo) {
     var project = util.getRepoName(pkgInfo);
 
-    return enabled && project ? '\n' + [
+    return enabled && project ? [
       '[',
       '![Dependency Status]',
       '(https://david-dm.org/' + project.path + '.svg)',
       '](https://david-dm.org/' + project.path + ')'
-    ].join('') + '\n' : '';
+    ].join('') : '';
   },
 
   stability: function(stability) {
