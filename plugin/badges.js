@@ -69,6 +69,17 @@ var generators = {
     ].join('') + '\n' : '';
   },
 
+  david: function(enabled, pkgInfo) {
+    var project = util.getRepoName(pkgInfo);
+
+    return enabled && project ? '\n' + [
+      '[',
+      '![Dependency Status]',
+      '(https://david-dm.org/' + project.path + '.svg)',
+      '](https://david-dm.org/' + project.path + ')'
+    ].join('') + '\n' : '';
+  },
+
   stability: function(stability) {
     var color = stabilityColors[stability] || 'lightgrey';
 
@@ -101,7 +112,7 @@ var generators = {
       '(https://badges.gitter.im/' + room + '.png)',
       '](https://gitter.im/' + room + ')'
     ].join('') + '\n';
-    
+
   }
 };
 
