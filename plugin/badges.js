@@ -77,7 +77,7 @@ var generators = {
       '![Dependency Status]',
       '(https://david-dm.org/' + project.path + '.svg)',
       '](https://david-dm.org/' + project.path + ')'
-    ].join('') : '';
+    ].join('') + ' ': '';
   },
 
   stability: function(stability) {
@@ -86,7 +86,7 @@ var generators = {
     return [
       '![' + stability + ']',
       '(https://img.shields.io/badge/stability-' + stability + '-' + color + '.svg)'
-    ].join('');
+    ].join('') + ' ';
   },
 
   nodeico: function(flags, pkgInfo) {
