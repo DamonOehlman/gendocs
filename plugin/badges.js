@@ -96,7 +96,7 @@ var generators = {
       '![NPM]',
       '(https://nodei.co/npm/' + pkgInfo.name + '.png)',
       '](https://nodei.co/npm/' + pkgInfo.name + '/)'
-    ].join('') + '\n' : '';
+    ].join('') + '\n\n' : '';
   },
 
   gitter: function(room, pkgInfo) {
@@ -142,7 +142,7 @@ module.exports = pull.Through(function(read, config, pkgInfo) {
       if (reNonH1.test(data[data.length - 1])) {
         getBadgeLines(config, pkgInfo, function(err, lines) {
           addedBadges = true;
-          cb(null, (err ? [] : lines).concat(data));
+          cb(null, [ (err ? [] : lines.concat('\n\n')).concat(data).join('') ]);
         });
       }
       else {
