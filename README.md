@@ -8,7 +8,7 @@ file designed to be saved as your `README.md` in your repository.
 
 ![experimental](https://img.shields.io/badge/stability-experimental-red.svg)
 
-[![Gitter chat](https://badges.gitter.im/DamonOehlman/gendocs.png)](https://gitter.im/DamonOehlman/gendocs)
+[![Dependency Status](https://david-dm.org/DamonOehlman/gendocs.svg)](https://david-dm.org/DamonOehlman/gendocs)
 
 
 ## Usage
