@@ -5,7 +5,10 @@ file designed to be saved as your `README.md` in your repository.
 
 
 [![NPM](https://nodei.co/npm/gendocs.png)](https://nodei.co/npm/gendocs/)
-![experimental](https://img.shields.io/badge/stability-experimental-red.svg) [![Dependency Status](https://david-dm.org/DamonOehlman/gendocs.svg)](https://david-dm.org/DamonOehlman/gendocs) ## Usage
+
+![experimental](https://img.shields.io/badge/stability-experimental-red.svg) [![Dependency Status](https://david-dm.org/DamonOehlman/gendocs.svg)](https://david-dm.org/DamonOehlman/gendocs) 
+
+## Usage
 
 Install using the instructions shown in the lovely
 [nodei.co](http://nodei.co) badge above then run in a repository directory:
