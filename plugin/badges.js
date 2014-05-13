@@ -44,7 +44,7 @@ var generators = {
       '![Build Status]',
       '(https://img.shields.io/travis/' + project.path + '.svg?branch=master)',
       '](https://travis-ci.org/' + project.path + ')'
-    ].join('') : '';
+    ].join('') + ' ' : '';
   },
 
   drone: function(enabled, pkgInfo) {
@@ -55,7 +55,7 @@ var generators = {
       '![Build Status]',
       '(https://drone.io/' + p.host + '/' + p.path + '/status.png)',
       '](https://drone.io/' + p.host + '/' + p.path + '/latest)'
-    ].join('') : '';
+    ].join('') + ' ' : '';
   },
 
   testling: function(enabled, pkgInfo) {
@@ -66,7 +66,7 @@ var generators = {
       '![browser support]',
       '(https://ci.testling.com/' + project.path + '.png)',
       '](https://ci.testling.com/' + project.path + ')'
-    ].join('') + '\n' : '';
+    ].join('') + '\n\n' : '';
   },
 
   david: function(enabled, pkgInfo) {
@@ -113,7 +113,7 @@ var generators = {
       '![Gitter chat]',
       '(https://badges.gitter.im/' + room + '.png)',
       '](https://gitter.im/' + room + ')'
-    ].join('') + '\n';
+    ].join('') + '\n\n';
 
   }
 };
