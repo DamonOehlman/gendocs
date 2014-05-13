@@ -84,8 +84,10 @@ var generators = {
     var color = stabilityColors[stability] || 'lightgrey';
 
     return [
+      '[',
       '![' + stability + ']',
-      '(https://img.shields.io/badge/stability-' + stability + '-' + color + '.svg)'
+      '(https://img.shields.io/badge/stability-' + stability + '-' + color + '.svg)',
+      '](https://github.com/badges/stability-badges)'
     ].join('') + ' ';
   },
 
