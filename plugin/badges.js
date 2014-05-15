@@ -143,8 +143,11 @@ module.exports = pull.Through(function(read, config, pkgInfo) {
       // the last line of the group if any mods have been made)
       if (reNonH1.test(data[data.length - 1])) {
         getBadgeLines(config, pkgInfo, function(err, lines) {
+          // cleanup the lines to ensure empty lines are removed
+          lines = (lines || []).filter(Boolean).concat('\n\n').concat(data);
+
           addedBadges = true;
-          cb(null, [ (err ? [] : lines.concat('\n\n')).concat(data).join('') ]);
+          cb(null, [ lines.join('') ]);
         });
       }
       else {
