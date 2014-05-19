@@ -95,7 +95,7 @@ module.exports = function(opts, callback) {
 
   // if we have been provided source content, then use that instead
   if (opts && typeof opts.input == 'string') {
-    generate(opts.input);
+    return generate(opts.input);
   }
 
   // sourcecat
