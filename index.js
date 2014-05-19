@@ -58,6 +58,7 @@ module.exports = function(opts, callback) {
   var docInfo = {};
   var plugins = [];
   var excluded = (opts || {}).exclude || [];
+  var cwd = (opts || {}).cwd || process.cwd();
 
   function generate(content) {
     // run the conversion pipeline
@@ -98,7 +99,7 @@ module.exports = function(opts, callback) {
   }
 
   // sourcecat
-  sourcecat.load('**/*.js', function(err, files) {
+  sourcecat.load('**/*.js', { cwd: cwd }, function(err, files) {
     var content;
 
     if (err) {
