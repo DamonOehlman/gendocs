@@ -86,6 +86,7 @@ var reModuleRequire = /require\(([\"\'])(\.\.[\.\/]*)([\w\/]*)([\"\'])\)/;
 module.exports =  pull.Through(function(read, config, pkgInfo) {
   return function(end, cb) {
     function next(end, data) {
+      var cwd = (config || {}).cwd || process.cwd();
       // run the test on the first line in the data only at this stage
       // TODO: process all the lines in case things have generated includes
       var match = data && reIncludes.map(function(regex) {
@@ -110,7 +111,7 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
       fileType = match[1] || path.extname(match[3]).slice(1);
 
       // read the contents of the specified file
-      getit(match[3], function(err, contents) {
+      getit(match[3], { cwd: cwd }, function(err, contents) {
         var requireMatch;
         var requireText;
         var isMarkdown = ['md', 'mdown', 'MD', 'MDOWN'].indexOf(fileType) >= 0;

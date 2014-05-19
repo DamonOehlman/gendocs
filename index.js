@@ -6,6 +6,7 @@ var path = require('path');
 var sourcecat = require('sourcecat');
 var emu = require('emu');
 var pull = require('pull-stream');
+var extend = require('cog/extend');
 
 var defaultPlugins = [
   'include-code'
@@ -85,8 +86,10 @@ module.exports = function(opts, callback) {
 
   // load the plugins
   plugins = Object.keys(docInfo).concat(defaultPlugins).map(function(plugin) {
+    var config = extend({ cwd: cwd }, docInfo[plugin]);
+
     try {
-      return require('./plugin/' + plugin)(docInfo[plugin], pkgInfo);
+      return require('./plugin/' + plugin)(config, pkgInfo);
     }
     catch (e) {
       return null;
