@@ -83,7 +83,7 @@ var reModuleRequire = /require\(([\"\'])(\.\.[\.\/]*)([\w\/]*)([\"\'])\)/;
 
 **/
 
-module.exports =  pull.Through(function(read, config, pkgInfo) {
+var includeCode = module.exports = pull.Through(function(read, config, pkgInfo) {
   return function(end, cb) {
     function next(end, data) {
       var cwd = (config || {}).cwd || process.cwd();
@@ -122,6 +122,22 @@ module.exports =  pull.Through(function(read, config, pkgInfo) {
         // output
         if (err) {
           contents = 'ERROR: could not find: ' + match[1];
+        }
+
+        // if we are dealing with markdown then recurse
+        if (isMarkdown) {
+          return pull(
+            pull.values(contents.split('\n')),
+            pull.map(function(line) {
+              return [line];
+            }),
+            includeCode(config, pkgInfo),
+            pull.flatten(),
+            pull.collect(function(err, lines) {
+              console.error('processed markdown: ', err, lines);
+              cb(end, lines)
+            })
+          );
         }
 
         // look for relative requires
