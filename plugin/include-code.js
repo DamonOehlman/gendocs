@@ -134,7 +134,6 @@ var includeCode = module.exports = pull.Through(function(read, config, pkgInfo) 
             includeCode(config, pkgInfo),
             pull.flatten(),
             pull.collect(function(err, lines) {
-              console.error('processed markdown: ', err, lines);
               cb(end, lines)
             })
           );
