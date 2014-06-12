@@ -3,6 +3,7 @@
 
 var out = require('out');
 var path = require('path');
+var minimatch = require('minimatch');
 var sourcecat = require('sourcecat');
 var emu = require('emu');
 var pull = require('pull-stream');
@@ -10,6 +11,10 @@ var extend = require('cog/extend');
 
 var defaultPlugins = [
   'include-code'
+];
+
+var DEFAULT_EXCLUDED = [
+  'bin/*'
 ];
 
 /**
@@ -58,7 +63,7 @@ module.exports = function(opts, callback) {
   var pkgInfo = {};
   var docInfo = {};
   var plugins = [];
-  var excluded = (opts || {}).exclude || [];
+  var excluded = DEFAULT_EXCLUDED.concat((opts || {}).exclude || []);
   var cwd = (opts || {}).cwd || process.cwd();
 
   function generate(content) {
@@ -111,7 +116,9 @@ module.exports = function(opts, callback) {
 
     // remove excluded files
     files = files.filter(function(file) {
-      var isExcluded = excluded.indexOf(file.filename) >= 0;
+      var isExcluded = excluded.filter(function(pattern) {
+        return minimatch(file.filename, pattern);
+      }).length > 0;
 
       if (isExcluded) {
         out('!{grey}gendocs is excluding {0}', file.filename);

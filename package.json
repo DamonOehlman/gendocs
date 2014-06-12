@@ -31,6 +31,7 @@
     "emu": "0.0.2",
     "formatter": "~0.4",
     "getit": "~0.4",
+    "minimatch": "~0.3",
     "nopt": "^2",
     "out": "~0.5",
     "pull-stream": "^2",
