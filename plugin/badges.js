@@ -87,7 +87,7 @@ var generators = {
       '[',
       '![' + stability + ']',
       '(https://img.shields.io/badge/stability-' + stability + '-' + color + '.svg)',
-      '](https://github.com/badges/stability-badges)'
+      '](https://github.com/dominictarr/stability#' + stability + ')'
     ].join('') + ' ';
   },
 
