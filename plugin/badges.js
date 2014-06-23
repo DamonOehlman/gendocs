@@ -81,8 +81,14 @@ var generators = {
   },
 
   stability: function(stability) {
-    var color = stabilityColors[stability] || 'lightgrey';
+    var color;
 
+    // if not a stability string, then abort
+    if (! stability) {
+      return [];
+    }
+
+    color = stabilityColors[stability] || 'lightgrey';
     return [
       '[',
       '![' + stability + ']',
