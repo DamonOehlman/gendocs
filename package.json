@@ -1,6 +1,6 @@
 {
   "name": "gendocs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple documentation generator using sourcecat and emu",
   "main": "index.js",
   "bin": {
