@@ -82,9 +82,17 @@ module.exports = function(opts, callback) {
   try {
     // attempt to include package info
     pkgInfo = require(path.resolve('package.json'));
+  }
+  catch (e) {
+    return callback(new Error('could not read package.json file'));
+  }
 
+  // initialise the doc info
+  docInfo = createDocInfo(pkgInfo);
+
+  try {
     // go a step futher and attempt to read doc info
-    docInfo = require(path.resolve('docs.json'));
+    docInfo = extend(docInfo, require(path.resolve('docs.json')));
   }
   catch (e) {
   }
@@ -135,3 +143,14 @@ module.exports = function(opts, callback) {
     generate(emu.getComments(content));
   });
 };
+
+function createDocInfo(pkgInfo) {
+  return {
+    license: !!pkgInfo.license,
+
+    badges: {
+      nodeico: true,
+      stability: pkgInfo.stability
+    }
+  };
+}
