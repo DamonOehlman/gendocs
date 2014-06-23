@@ -7,6 +7,7 @@
     "gendocs": "bin/gendocs"
   },
   "preferGlobal": true,
+  "stability": "unstable",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gendocs": "./bin/gendocs > README.md"
