@@ -27,13 +27,13 @@
     "url": "https://github.com/DamonOehlman/gendocs/issues"
   },
   "dependencies": {
-    "async": "~0.8",
+    "async": "~0.9",
     "cog": "^0.5.3",
     "emu": "0.0.2",
     "formatter": "~0.4",
     "getit": "~0.4",
     "minimatch": "~0.3",
-    "nopt": "^2",
+    "nopt": "^3",
     "out": "~0.5",
     "pull-stream": "^2",
     "sourcecat": "~0.2"
