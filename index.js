@@ -1,6 +1,7 @@
 /* jshint node: true */
 'use strict';
 
+var fs = require('fs');
 var out = require('out');
 var path = require('path');
 var minimatch = require('minimatch');
@@ -88,7 +89,7 @@ module.exports = function(opts, callback) {
   }
 
   // initialise the doc info
-  docInfo = createDocInfo(pkgInfo);
+  docInfo = createDocInfo(pkgInfo, cwd);
 
   try {
     // go a step futher and attempt to read doc info
@@ -144,13 +145,14 @@ module.exports = function(opts, callback) {
   });
 };
 
-function createDocInfo(pkgInfo) {
+function createDocInfo(pkgInfo, cwd) {
   return {
     license: !!pkgInfo.license,
 
     badges: {
       nodeico: true,
-      stability: pkgInfo.stability
+      stability: pkgInfo.stability,
+      travis: fs.existsSync(path.resolve(cwd, '.travis.yml'))
     }
   };
 }
