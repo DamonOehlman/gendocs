@@ -80,12 +80,17 @@ var generators = {
     ].join('') + ' ': '';
   },
 
-  stability: function(stability) {
+  stability: function(stability, pkgInfo) {
     var color;
 
     // if not a stability string, then abort
     if (! stability) {
       return [];
+    }
+
+    // if docs.json indicates stability should be included, then read from the pkgInfo
+    if (stability === true) {
+      stability = pkgInfo.stability || 'experimental';
     }
 
     color = stabilityColors[stability] || 'lightgrey';
