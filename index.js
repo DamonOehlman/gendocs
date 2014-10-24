@@ -151,7 +151,7 @@ function createDocInfo(pkgInfo, cwd) {
 
     badges: {
       nodeico: true,
-      testling: !!pkgInfo.testling,
+      testling: !!(pkgInfo.testling && pkgInfo.testling.browsers),
       stability: pkgInfo.stability,
       travis: fs.existsSync(path.resolve(cwd, '.travis.yml'))
     }
