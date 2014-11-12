@@ -132,7 +132,7 @@ var generators = {
     return '\n' + [
       '[',
       '![' + name + ' google group]',
-      '(http://img.shields.io/badge/' + name + '-discuss-blue.svg)',
+      '(http://img.shields.io/badge/discuss-' + name + '-blue.svg)',
       '](https://groups.google.com/forum/#!forum/' + name.replace(/\./g, '-') + ')'
     ].join('') + '\n\n';
   }
