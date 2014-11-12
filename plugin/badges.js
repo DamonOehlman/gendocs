@@ -126,6 +126,15 @@ var generators = {
       '](https://gitter.im/' + room + ')'
     ].join('') + '\n\n';
 
+  },
+
+  group: function(name, pkgInfo) {
+    return '\n' + [
+      '[',
+      '![' + name + ' google group]',
+      '(http://img.shields.io/badge/' + name + '-discuss-blue.svg)',
+      '](https://groups.google.com/forum/#!forum/' + name.replace(/\./g, '-') + ')'
+    ].join('') + '\n\n';
   }
 };
 
