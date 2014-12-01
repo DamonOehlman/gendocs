@@ -36,6 +36,6 @@
     "nopt": "^3",
     "out": "~0.5",
     "pull-stream": "^2",
-    "sourcecat": "~0.2"
+    "sourcecat": "^1.0.0"
   }
 }
