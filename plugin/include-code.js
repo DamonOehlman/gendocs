@@ -12,6 +12,7 @@ var reIncludes = [
 ];
 var reEscapedInclude = /^\s*\\(\<{3}.*)$/;
 var reModuleRequire = /require\(([\"\'])(\.\.[\.\/]*)([\w\/]*)([\"\'])\)/;
+var reRelativeRequire = /require\(([\"\'])[\.\/]+/;
 
 /**
   ### include-code
@@ -158,10 +159,10 @@ var includeCode = module.exports = pull.Through(function(read, config, pkgInfo) 
 
         // replace a require('..') or require('../..') call with
         // require('pkginfo.name') just to be helpful
-        // contents = contents.replace(
-        //   reModuleRequire,
-        //   'require($1' + pkgInfo.name + '$3)'
-        // );
+        contents = contents.replace(
+          reRelativeRequire,
+          'require($1' + pkgInfo.name + '/'
+        );
 
         // send the data along
         cb(
