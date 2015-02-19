@@ -15,7 +15,8 @@ var defaultPlugins = [
 ];
 
 var DEFAULT_EXCLUDED = [
-  'bin/*'
+  'bin/*',
+  'bundle.js'
 ];
 
 /**
