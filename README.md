@@ -6,7 +6,7 @@ file designed to be saved as your `README.md` in your repository.
 
 [![NPM](https://nodei.co/npm/gendocs.png)](https://nodei.co/npm/gendocs/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/gendocs/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/gendocs) 
 
 ## Usage
 
@@ -200,7 +200,7 @@ location:
 
 ### MIT
 
-Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2015 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
