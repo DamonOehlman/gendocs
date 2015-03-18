@@ -139,12 +139,13 @@ var generators = {
 
   bithound: function(enabled, pkgInfo) {
     var p = util.getRepoName(pkgInfo);
+    var host = p.host.split('.')[0];
 
     return enabled && p ? [
       '[',
       '![bitHound Score]',
-      '(https://www.bithound.io/' + p.host + '/' + p.path + '/badges/score.svg)',
-      '](https://www.bithound.io/' + p.host + '/' + p.path + ')'
+      '(https://www.bithound.io/' + host + '/' + p.path + '/badges/score.svg)',
+      '](https://www.bithound.io/' + host + '/' + p.path + ')'
     ].join('') + ' ' : '';
   }
 };
