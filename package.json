@@ -32,7 +32,7 @@
     "emu": "0.0.2",
     "formatter": "~0.4",
     "getit": "^1.0.0",
-    "minimatch": "^1.0.0",
+    "minimatch": "^2.0.4",
     "nopt": "^3",
     "out": "~0.5",
     "pull-stream": "^2",
