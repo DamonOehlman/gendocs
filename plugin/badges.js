@@ -135,6 +135,17 @@ var generators = {
       '(http://img.shields.io/badge/discuss-' + name + '-blue.svg)',
       '](https://groups.google.com/forum/#!forum/' + name.replace(/\./g, '-') + ')'
     ].join('') + '\n\n';
+  },
+
+  bithound: function(enabled, pkgInfo) {
+    var p = util.getRepoName(pkgInfo);
+
+    return enabled && p ? [
+      '[',
+      '![bitHound Score]',
+      '(https://www.bithound.io/' + p.host + '/' + p.path + '/badges/score.svg)',
+      '](https://www.bithound.io/' + p.host + '/' + p.path + ')'
+    ].join('') + ' ' : '';
   }
 };
 

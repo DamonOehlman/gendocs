@@ -154,7 +154,8 @@ function createDocInfo(pkgInfo, cwd) {
       nodeico: true,
       testling: !!(pkgInfo.testling && pkgInfo.testling.browsers),
       stability: pkgInfo.stability,
-      travis: fs.existsSync(path.resolve(cwd, '.travis.yml'))
+      travis: fs.existsSync(path.resolve(cwd, '.travis.yml')),
+      bithound: fs.existsSync(path.resolve(cwd, '.bithoundrc'))
     }
   };
 }
