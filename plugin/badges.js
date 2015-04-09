@@ -42,7 +42,7 @@ var generators = {
     return enabled && project ? [
       '[',
       '![Build Status]',
-      '(https://img.shields.io/travis/' + project.path + '.svg?branch=master)',
+      '(https://api.travis-ci.org/' + project.path + '.svg?branch=master)',
       '](https://travis-ci.org/' + project.path + ')'
     ].join('') + ' ' : '';
   },
