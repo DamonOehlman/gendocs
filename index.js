@@ -8,6 +8,7 @@ var minimatch = require('minimatch');
 var sourcecat = require('sourcecat');
 var emu = require('emu');
 var pull = require('pull-stream');
+var group = require('pull-group');
 var extend = require('cog/extend');
 
 var defaultPlugins = [
@@ -72,7 +73,7 @@ module.exports = function(opts, callback) {
     // run the conversion pipeline
     pull.apply(pull, [
       pull.values(content.split('\n')),
-      pull.group(1)
+      group(1)
     ].concat(plugins).concat([
       pull.flatten(),
       pull.collect(function(err, lines) {
@@ -142,7 +143,7 @@ module.exports = function(opts, callback) {
       return file.content.toString('utf8');
     }).join('');
 
-    generate(emu.getComments(content));
+    generate(emu.process(content));
   });
 };
 
