@@ -94,10 +94,14 @@ module.exports = function(opts, callback) {
   docInfo = createDocInfo(pkgInfo, cwd);
 
   try {
-    // go a step futher and attempt to read doc info
-    docInfo = extend(docInfo, require(path.resolve('docs.json')));
-  }
-  catch (e) {
+    const localConfig = require(path.resolve('docs.json'));
+
+    // override specific sections
+    docInfo.license = localConfig.licence != undefined ? localConfig.licence : docInfo.licence;
+
+    // extend badges to override default values (if specified)
+    docInfo.badges = extend({}, docInfo.badges, localConfig.badges);
+  } catch (e) {
   }
 
   // load the plugins
