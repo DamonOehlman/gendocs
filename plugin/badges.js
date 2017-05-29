@@ -147,6 +147,18 @@ var generators = {
       '(https://www.bithound.io/' + host + '/' + p.path + '/badges/score.svg)',
       '](https://www.bithound.io/' + host + '/' + p.path + ')'
     ].join('') + ' ' : '';
+  },
+
+  codeclimate: function(enabled, pkgInfo) {
+    var p = util.getRepoName(pkgInfo);
+    var host = p.host.split('.')[0];
+
+    return enabled && p ? [
+      '[',
+      '![Code Climate]',
+      '(https://codeclimate.com/' + host + '/' + p.path + '/badges/gpa.svg)',
+      '](https://codeclimate.com/' + host + '/' + p.path + ')'
+    ].join('') + ' ' : '';
   }
 };
 

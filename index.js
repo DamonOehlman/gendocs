@@ -148,6 +148,8 @@ module.exports = function(opts, callback) {
 };
 
 function createDocInfo(pkgInfo, cwd) {
+  const haveCodeClimateConfig = fs.existsSync(path.resolve(cwd, '.codeclimate.yml'));
+
   return {
     license: !!pkgInfo.license,
 
@@ -156,7 +158,8 @@ function createDocInfo(pkgInfo, cwd) {
       testling: !!(pkgInfo.testling && pkgInfo.testling.browsers),
       stability: pkgInfo.stability,
       travis: fs.existsSync(path.resolve(cwd, '.travis.yml')),
-      bithound: true
+      codeclimate: haveCodeClimateConfig,
+      bithound: !haveCodeClimateConfig
     }
   };
 }
