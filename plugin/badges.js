@@ -139,7 +139,7 @@ var generators = {
 
   bithound: function(enabled, pkgInfo) {
     var p = util.getRepoName(pkgInfo);
-    var host = p.host.split('.')[0];
+    var host = p && p.host.split('.')[0];
 
     return enabled && p ? [
       '[',
@@ -151,7 +151,7 @@ var generators = {
 
   codeclimate: function(enabled, pkgInfo) {
     var p = util.getRepoName(pkgInfo);
-    var host = p.host.split('.')[0];
+    var host = p && p.host.split('.')[0];
 
     return enabled && p ? [
       '[',
