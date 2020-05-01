@@ -10,7 +10,9 @@
   "stability": "unstable",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gendocs": "./bin/gendocs > README.md"
+    "gendocs": "./bin/gendocs > README.md",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,8 @@
     "out": "^1.0.0",
     "pull-group": "^1.0.0",
     "pull-stream": "^2.28.4",
-    "sourcecat": "^1.1.0"
-  }
+    "sourcecat": "^1.1.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
