@@ -27,7 +27,7 @@
     "url": "https://github.com/DamonOehlman/gendocs/issues"
   },
   "dependencies": {
-    "async": "^2.0.1",
+    "async": "^3.2.2",
     "cog": "^1.0.0",
     "emu": "^1.0.0",
     "formatter": "~0.4",
